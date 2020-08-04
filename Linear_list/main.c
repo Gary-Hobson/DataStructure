@@ -5,26 +5,33 @@ int print_list(uint16_t index, void * data);
 
 int main()
 {
-    list_t list;
+    list_t *list;
     int res;
     int array[16]={1,2,3,4,5,6,7,8,9,10};
-
-
-    res=creat_list(list,sizeof(int),16);
+    int data=9;
+    char * info[]={"查找到元素，index:","未查找到元素"};
+    res=creat(&list,sizeof(int),16);
     printf("list creat result :%d\n",res);
 
-    insert_list_elem(list,1,5,array);
-    traverse_list(list , print_list);
+    insert(list,1,5,array);
+    traverse(list , print_list);
 
     printf("*****插入元素****\n");
-    insert_list_elem(list,2,3,array+6);
-    traverse_list(list , print_list);
+    insert(list,2,3,array+6);
+    traverse(list , print_list);
 
     printf("*****删除元素****\n");
-    delete_list_elem(list,4,3,NULL);
-    traverse_list(list , print_list);
+    pop(list,4,3,NULL);
+    traverse(list , print_list);
+
+    printf("*****查找元素****\n");
+    res=find(list,&data);
+    printf("%s%d\n",info[res%1],(res==0)?data:res);
     
-    destroy_list(list);
+    clear(list);
+    printf("list length :%d\n",length(list));
+
+    destroy(list);
 
     return 1;
 }
