@@ -5,6 +5,12 @@
 
 typedef struct _list_t list_t;
 
+/*
+  @描述: 创建链表
+  @参数1: list:链表指针
+  @参数2: size:链表大小
+  @参数3: length:链表长度
+*/
 int     creat(list_t ** list ,uint16_t size,uint16_t length);
 int     insert(list_t *list, uint16_t loca, uint16_t num, void *data);
 int     pop(list_t *list, uint16_t loca, uint16_t num, void *data);

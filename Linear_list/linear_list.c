@@ -1,10 +1,9 @@
 #include "list.h"
-#include <stdlib.h>
 #include <string.h>
 
 struct _list_t 
 {
-    uint8_t   * base;           /*数据基地址*/
+    void       * base;           /*数据基地址*/
     uint16_t    length;         /*已使用数据长度*/   
     uint16_t    cacapacity;     /*列表容量*/
     uint16_t    size;           /*元素大小*/
@@ -84,6 +83,7 @@ int  traverse(list_t *list, int (*visit)(uint16_t index,void *data))
             return -1;
         }
     }
+
     return 1;
 }
 
@@ -104,6 +104,18 @@ int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
         memcpy(data,list->base+(loca - 1)*list->size, num * list->size);
     }
 
+    void *  src_addr = list->base + (list->size*(loca+num-1) );
+    void *  des_addr = list->base + (list->size*(loca-1) );
+    uint16_t offsset = (list->length - loca - num + 1)*list->size;
+
+    memmove(des_addr,src_addr,offsset);
+    list->length=list->length - num;
+
+    return 1;
+}
+
+int read(list_t *list, uint16_t loca, uint16_t num, void *data)
+{
     void *  src_addr = list->base + (list->size*(loca+num-1) );
     void *  des_addr = list->base + (list->size*(loca-1) );
     uint16_t offsset = (list->length - loca - num + 1)*list->size;

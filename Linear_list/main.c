@@ -8,12 +8,14 @@ int main()
     list_t *list;
     int res;
     int array[16]={1,2,3,4,5,6,7,8,9,10};
+    int buff[16];
     int data=9;
     char * info[]={"查找到元素，index:","未查找到元素"};
+
     res=creat(&list,sizeof(int),16);
     printf("list creat result :%d\n",res);
 
-    insert(list,1,5,array);
+    append(list,5,array);
     traverse(list , print_list);
 
     printf("*****插入元素****\n");
@@ -21,8 +23,12 @@ int main()
     traverse(list , print_list);
 
     printf("*****删除元素****\n");
-    pop(list,4,3,NULL);
+    pop(list,4,3,buff);
     traverse(list , print_list);
+
+    printf("*****读取元素****\n");
+    read(list,4,3,buff);
+    printf("%d %d %d\n",buff[0],buff[1],buff[2]);
 
     printf("*****查找元素****\n");
     res=find(list,&data);
@@ -31,7 +37,9 @@ int main()
     clear(list);
     printf("list length :%d\n",length(list));
 
+    /*释放列表*/
     destroy(list);
+    printf("list destroy success！\n");
 
     return 1;
 }

@@ -6,7 +6,7 @@ TARGET = list
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Os
+OPT = 
 
 # Build path
 BUILD_DIR = build
@@ -17,7 +17,7 @@ CC =gcc
 
 # C sources
 C_SOURCES =  \
-linear_list.c  \
+link_list.c  \
 main.c \
 
 # C includes
