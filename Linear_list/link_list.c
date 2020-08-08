@@ -38,7 +38,7 @@ static node_t * jump_offset(list_t *list, uint16_t loca)
     return current;
 }
 
-int  creat(list_t ** list ,uint16_t size ,uint16_t length)
+int  list_creat(list_t ** list ,uint16_t size ,uint16_t length)
 {
     *list=malloc(sizeof(list_t));
 
@@ -48,7 +48,7 @@ int  creat(list_t ** list ,uint16_t size ,uint16_t length)
     return 1;
 }
 
-int insert(list_t *list, uint16_t loca, uint16_t num, void *data)
+int list_insert(list_t *list, uint16_t loca, uint16_t num, void *data)
 {
     node_t *current=(node_t *)list;
     uint16_t offset=0;
@@ -81,12 +81,12 @@ int insert(list_t *list, uint16_t loca, uint16_t num, void *data)
     return 1;
 }
 
-inline int append(list_t *list, uint16_t num, void *data)
+inline int list_append(list_t *list, uint16_t num, void *data)
 {
-    return insert(list, list->length+1,num,data);
+    return list_insert(list, list->length+1,num,data);
 }
 
-int traverse(list_t *list, int (*visit)(uint16_t index,void *data))
+int list_traverse(list_t *list, int (*visit)(uint16_t index,void *data))
 {
     node_t * current=list->next;
 
@@ -102,7 +102,7 @@ int traverse(list_t *list, int (*visit)(uint16_t index,void *data))
     return 1;
 }
 
-int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
+int list_delete(list_t *list, uint16_t loca, uint16_t num, void *data)
 {
     /*偏置到待删除节点*/
     node_t *current = jump_offset(list,loca);
@@ -137,7 +137,7 @@ int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
     return 1;
 }
 
-int read(list_t *list, uint16_t loca, uint16_t num,void *data)
+int list_read(list_t *list, uint16_t loca, uint16_t num,void *data)
 {
     /*偏置到待读取节点*/
     node_t *current = jump_offset(list,loca+1);
@@ -162,7 +162,7 @@ int read(list_t *list, uint16_t loca, uint16_t num,void *data)
     return 1;
 }
 
-int clear(list_t *list)
+int list_clear(list_t *list)
 {
     node_t * current=list->next;
     node_t * next ;
@@ -178,20 +178,20 @@ int clear(list_t *list)
     return 1;
 }
 
-int destroy(list_t *list)
+int list_destroy(list_t *list)
 {
-    clear(list);
+    list_clear(list);
     free(list);
 
     return 1;
 }
 
-int length(list_t *list)
+int list_length(list_t *list)
 {
     return list->length;
 }
 
-int find(list_t * list, void *data)
+int list_find(list_t * list, void *data)
 {
     node_t *current=list->next;
     for (int i = 0; i < list->length ; i++)

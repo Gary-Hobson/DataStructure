@@ -9,7 +9,7 @@ struct _list_t
     uint16_t    size;           /*元素大小*/
 };
 
-int  creat(list_t ** list ,uint16_t size ,uint16_t length)
+int  list_creat(list_t ** list ,uint16_t size ,uint16_t length)
 {
     *list=malloc(sizeof(list_t));
 
@@ -27,7 +27,7 @@ int  creat(list_t ** list ,uint16_t size ,uint16_t length)
     return 1;
 }
 
-int destroy(list_t *list)
+int list_destroy(list_t *list)
 {
     free(list->base);
     free(list);
@@ -35,7 +35,7 @@ int destroy(list_t *list)
     return 1;
 }
 
-int insert(list_t *list, uint16_t loca, uint16_t num, void * data)
+int list_insert(list_t *list, uint16_t loca, uint16_t num, void * data)
 {
     /*非法指针错误*/
     if(list==NULL||data==NULL)
@@ -73,7 +73,7 @@ int insert(list_t *list, uint16_t loca, uint16_t num, void * data)
 }
 
 
-int  traverse(list_t *list, int (*visit)(uint16_t index,void *data))
+int  list_traverse(list_t *list, int (*visit)(uint16_t index,void *data))
 {
     int i=0;
     for ( i = 1; i <= list->length ; i++)
@@ -87,7 +87,7 @@ int  traverse(list_t *list, int (*visit)(uint16_t index,void *data))
     return 1;
 }
 
-int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
+int list_delete(list_t *list, uint16_t loca, uint16_t num, void *data)
 {
     if(list==NULL)
     {
@@ -114,7 +114,7 @@ int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
     return 1;
 }
 
-int read(list_t *list, uint16_t loca, uint16_t num, void *data)
+int list_read(list_t *list, uint16_t loca, uint16_t num, void *data)
 {
     void *  src_addr = list->base + (list->size*(loca+num-1) );
     void *  des_addr = list->base + (list->size*(loca-1) );
@@ -126,7 +126,7 @@ int read(list_t *list, uint16_t loca, uint16_t num, void *data)
     return 1;
 }
 
-int length(list_t *list)
+int list_length(list_t *list)
 {
     if(list==NULL)
     {
@@ -136,7 +136,7 @@ int length(list_t *list)
     return list->length;
 }
 
-int find(list_t * list ,void *data)
+int list_find(list_t * list ,void *data)
 {
     int index = 0;
 
@@ -160,12 +160,12 @@ int find(list_t * list ,void *data)
     return index;
 }
 
-inline int append(list_t *list, uint16_t num, void *data)
+inline int list_append(list_t *list, uint16_t num, void *data)
 {
-    return insert(list,list->length,num,data);
+    return list_insert(list,list->length,num,data);
 }
 
-int clear(list_t *list)
+int list_clear(list_t *list)
 {
     if(list==NULL)
     {
