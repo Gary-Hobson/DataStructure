@@ -44,7 +44,6 @@ int str_to_list(char * str, list_t ** list)
         num--;
     }
     
-    traverse(*list,visit);
     printf("\n");
     return 1;
 }

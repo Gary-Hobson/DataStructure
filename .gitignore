@@ -1,0 +1,14 @@
+# Object files
+*.o
+*.elf
+*.d
+*.lst
+*.map
+
+
+# Executables
+*.exe
+*.app
+*.bin
+*.hex
+
