@@ -107,6 +107,11 @@ int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
     /*偏置到待删除节点*/
     node_t *current = jump_offset(list,loca);
 
+    if(loca+num -1> list->length)
+    {
+        return -2;
+    }
+
     /*非法位置*/
     if(current==NULL)
     {
@@ -135,7 +140,7 @@ int pop(list_t *list, uint16_t loca, uint16_t num, void *data)
 int read(list_t *list, uint16_t loca, uint16_t num,void *data)
 {
     /*偏置到待读取节点*/
-    node_t *current = jump_offset(list,loca);
+    node_t *current = jump_offset(list,loca+1);
 
     /*非法位置*/
     if(current==NULL)

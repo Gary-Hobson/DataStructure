@@ -15,27 +15,43 @@ int main()
     res=creat(&list,sizeof(int),16);
     printf("list creat result :%d\n",res);
 
-    append(list,5,array);
-    traverse(list , print_list);
+    while (1)
+    {
+        res=1;
+        res += append(list,5,array);
+        traverse(list , print_list);
 
-    printf("*****插入元素****\n");
-    insert(list,2,3,array+6);
-    traverse(list , print_list);
+        printf("*****插入元素****\n");
+        res *= insert(list,2,3,array+6);
+        traverse(list , print_list);
 
-    printf("*****删除元素****\n");
-    pop(list,4,3,buff);
-    traverse(list , print_list);
+        printf("*****删除元素****\n");
+        res *= pop(list,3,4,buff);
+        traverse(list , print_list);
 
-    printf("*****读取元素****\n");
-    read(list,4,3,buff);
-    printf("%d %d %d\n",buff[0],buff[1],buff[2]);
+        printf("*****读取元素****\n");
+        res *= read(list,2,3,buff);
+        printf("%d %d %d\n",buff[0],buff[1],buff[2]);
 
-    printf("*****查找元素****\n");
-    res=find(list,&data);
-    printf("%s%d\n",info[res%1],(res==0)?data:res);
+        printf("*****查找元素****\n");
+        res *= find(list,&data);
+        printf("%s%d\n",info[res%1],(res==0)?data:res);
+        
+        if(res<0)
+        {
+            printf("errer :%d\n",res);
+            return 0;
+        }
+        
+        if(length(list)>128)
+        {
+            clear(list);
+            printf("*********************************\n");
+            printf("list length :%d\n",length(list));
+        }
+    }
     
-    clear(list);
-    printf("list length :%d\n",length(list));
+    
 
     /*释放列表*/
     destroy(list);

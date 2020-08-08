@@ -1,16 +1,7 @@
-######################################
-# target
-######################################
 TARGET = list
-
-# debug build?
-DEBUG = 1
-# optimization
-OPT = 
 
 # Build path
 BUILD_DIR = build
-
 
 # binaries
 CC =gcc
@@ -18,39 +9,24 @@ CC =gcc
 # C sources
 C_SOURCES =  \
 link_list.c  \
-main.c \
+addition.c \
 
 # C includes
 C_INCLUDES =  \
--I../../platform
+-I../../platform \
+-I./
 
 # C defines
 C_DEFS =  \
 
-
 # compile gcc flags
-CFLAGS = -std=c99 $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections 
+CFLAGS = -std=c99 -g $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections 
 
-ifeq ($(DEBUG), 1)
-CFLAGS += -g 
-endif
-
-# Generate dependency information
-CFLAGS += 
-
-
-# libraries
-LIBS = 
-LIBDIR = -L/usr/local/lib 
-LDFLAGS =   $(LIBDIR) $(LIBS) 
+LDFLAGS =   
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET) 
 
-
-#######################################
-# build the application
-#######################################
 # list of objects
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
