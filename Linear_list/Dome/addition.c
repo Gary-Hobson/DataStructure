@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 
-int str_to_list(char *str,list_t ** list );
-int list_addition(list_t *addend, list_t * augend,list_t **sum);
-int list_to_str(char *str, list_t * list);
 int visit(uint16_t index,void *data);
+int str_to_list(char *str,list_t ** list );
+int list_to_str(char *str, list_t * list);
+int list_addition(list_t *addend, list_t * augend,list_t **sum);
 
 list_t *addend=NULL, *augend=NULL, *sum=NULL;
 char buff[128];

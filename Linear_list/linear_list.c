@@ -1,6 +1,17 @@
+/*
+ * @Descripttion: 连续式线性表源文件
+ * @version: V1.0
+ * @Author: Hobson
+ * @Date: 2020-08-08 23:22:35
+ * @History:  V1.0  实现连续式和链式线性表
+ * @LastEditTime: 2020-08-08 23:41:53
+ */
+
+
 #include "list.h"
 #include <string.h>
 
+/*连续式线性表数据结构,对外不可见*/
 struct _list_t 
 {
     void       * base;           /*数据基地址*/

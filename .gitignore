@@ -5,6 +5,7 @@
 *.lst
 *.map
 
+**/build
 
 # Executables
 *.exe

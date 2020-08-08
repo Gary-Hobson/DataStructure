@@ -7,9 +7,12 @@ BUILD_DIR = build
 CC =gcc
 
 # C sources
+#默认使用链式表,默认编译测试函数,如需运行Dome,修改makefile
 C_SOURCES =  \
 link_list.c  \
-addition.c \
+main.c	 			
+
+# ./dome/addition.c \	#使用链表实现任意位整数的加法
 
 # C includes
 C_INCLUDES =  \

@@ -1,8 +1,17 @@
+/*
+ * @Descripttion: 链式线性表源文件
+ * @version: V1.0
+ * @Author: Hobson
+ * @Date: 2020-08-08 23:40:12
+ * @History: V1.0 实现连续式和链式线性表
+ * @LastEditTime: 2020-08-08 23:42:08
+ */
 #include "list.h"
 #include <string.h>
 
 typedef struct  _link_node_t node_t;
 
+/*链表式线性表数据结构,对外不可见*/
 struct _list_t 
 {
     node_t      * next;           /*数据基地址*/
@@ -10,10 +19,11 @@ struct _list_t
     uint16_t    size;           /*元素大小*/
 };
 
+/*链表节点数据结构定义,对外不可见*/
 typedef struct  _link_node_t
 {
-    node_t * next;
-    void * data;
+    node_t * next;      /*后继节点地址*/
+    void * data;        /*节点数据*/
 }node_t;
 
 
