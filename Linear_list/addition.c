@@ -3,7 +3,7 @@
 #include <string.h>
 
 int str_to_list(char *str,list_t ** list );
-int list_add(list_t *addend, list_t * augend,list_t **sum);
+int list_addition(list_t *addend, list_t * augend,list_t **sum);
 int list_to_str(char *str, list_t * list);
 int visit(uint16_t index,void *data);
 
@@ -19,13 +19,13 @@ int main()
     str_to_list(buff,&addend);
     
     printf("请输入被加数:");
-    fflush(stdin);    fflush(stdout);
+    fflush(stdin);
     scanf("%s",buff);
     fflush(stdin);
     printf("被加数为:%s\n",buff);
     str_to_list(buff,&augend);
 
-    list_add(addend,augend,&sum);
+    list_addition(addend,augend,&sum);
     list_to_str(buff,sum);
     printf("两数相加为：%s\n",buff);
 }
@@ -56,7 +56,7 @@ int visit(uint16_t index,void *data)
 }
 
 
-int list_add(list_t *addend, list_t * augend,list_t **sum)
+int list_addition(list_t *addend, list_t * augend,list_t **sum)
 {
     uint16_t num1,num2,carry,temp;
 
